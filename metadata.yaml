@@ -37,7 +37,7 @@ authors:
 copyright: '2019, The Board of Trustees of the Leland Stanford Junior University, through SLAC National Accelerator Laboratory'
 
 # Description. A short, 1-2 sentence statemement used by document indices.
-description: 'rom September 2018 to March 2019, LSST Data Management (DM) and Google Cloud conducted a proof of concept engagement to investigate the utility, applicability, and performance of Google Cloud services with regard to various DM needs.
+description: 'From September 2018 to March 2019, LSST Data Management (DM) and Google Cloud conducted a proof of concept engagement to investigate the utility, applicability, and performance of Google Cloud services with regard to various DM needs.
 This document describes what was accomplished in each area, including measurements obtained, and presents some conclusions about how the engagement went overall.'
 
 # Abstract, if available

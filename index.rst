@@ -150,7 +150,7 @@ The PPDB, in a PostgreSQL implementation, was successfully deployed on the cloud
 Its performance was tested using existing client code.
 The results are documented in `DMTN-113 <https://dmtn-113.lsst.io/>`_.
 On the cloud, it was possible to execute a more realistic scenario than on previous development hardware.
-The client code could run on a separate machine from the database, and the database itself could run on a larger server (64 vCPUs versus 56 hyperthreads shared with clients; 10 TB SSD versus 2 TB NVMe + 3 TB SATA SSD and 7.3 TB RAID).
+The client code could run on a separate machine from the database, and the database itself could run on a larger server (64 vCPUs versus 56 hyperthreads shared with clients; 10 TB SSD versus 2 TB NVMe + 3 TB SATA SSD and 7.3 TB RAID), althoough it should be noted that the cloud storage involved, though SSD, was still accessed over the network, potentially constraining bandwidth and I/O operations per second.
 
 The performance was found to be roughly comparable with Oracle RAC, somewhat worse for writes/inserts.
 With the larger machine size, it was possible to extend the PostgreSQL results to ~2 months of visits versus ~2 weeks on the previous hardware.

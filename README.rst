@@ -14,7 +14,7 @@ Google Cloud Engagement Results
 DMTN-125
 ========
 
-rom September 2018 to March 2019, LSST Data Management (DM) and Google Cloud conducted a proof of concept engagement to investigate the utility, applicability, and performance of Google Cloud services with regard to various DM needs.
+From September 2018 to March 2019, LSST Data Management (DM) and Google Cloud conducted a proof of concept engagement to investigate the utility, applicability, and performance of Google Cloud services with regard to various DM needs.
 This document describes what was accomplished in each area, including measurements obtained, and presents some conclusions about how the engagement went overall.
 
 **Links:**

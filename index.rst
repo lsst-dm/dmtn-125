@@ -67,10 +67,10 @@ Results are given in `Document-31100 <https://ls.st/Document-31100>`_.
 
 .. _Google BigQuery: https://cloud.google.com/bigquery/
 
-Query times for "point" queries limited to a single chunk and sometimes indexed were generally faster in the cloud than on the PDAC hardware.
+Query times for "point" queries limited to a single chunk and sometimes indexed were generally faster on Qserv in the cloud than on the PDAC hardware.
 But "scan" queries that processed large amounts of data were slower.
-There is one data point that was not included in the above document: a ``COUNT(*)`` query on the ``wise_00.allwise_p3as_psd`` table took 1141.1 seconds in a "typical" run on the cloud, as opposed to the reported maximum of 1825.9 seconds.
-This suggests that anecdotal but unrecorded measurements of approximately 20% degradation in query times for larger queries are reasonable.
+There is one data point that was not included in the above document: a ``COUNT(*)`` query on the ``wise_00.allwise_p3as_psd`` table took 1141.1 seconds in a "typical" run of Qserv in the cloud, as opposed to the reported maximum of 1825.9 seconds for the same configuration.
+This suggests that anecdotal but unrecorded measurements of approximately 20% degradation in query times for larger queries, likely due to the network-connected disk, are reasonable.
 
 Comparisons with other types of cloud storage were not done.
 Temporary node-attached storage, while perhaps higher performance, would be unsuitable for a production deployment as there would be insufficient space and permanence.

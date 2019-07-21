@@ -93,6 +93,7 @@ Neither was investigated during the engagement.
 .. _Spanner: https://cloud.google.com/spanner/
 
 `Cloud Dataproc`_, a hosted `Apache Spark`_ and `Hadoop`_ data processing service, was not tested, but there is no reason to believe that it will not work as advertised against data stored in BigQuery.
+This would provide a "next-to-database" processing capability for computations such as correlations that are difficult to express in ADQL.
 
 .. _Apache Spark: http://spark.apache.org/
 .. _Hadoop: http://hadoop.apache.org/

@@ -10,9 +10,10 @@ Introduction
 From September 2018 to March 2019, LSST Data Management (DM) and Google Cloud conducted a proof of concept engagement to investigate the utility, applicability, and performance of Google Cloud services with regard to various DM needs.
 
 `DMTN-078 <https://DMTN-078.lsst.io/>`_ laid out several potentially fruitful areas of collaboration and was the organizing skeleton for the engagement.
-These areas related to `Qserv`_, the LSST parallel distributed database for large-scale catalog data products; Prompt Processing, the service that receives images and metadata in near real-time from the observatory and produces alerts for the community; and the `LSST Science Platform`_ (LSP), the environment for scientists to retrieve, process, and analyze LSST data products close to where they live.
+These areas related to `Qserv`_, the LSST parallel distributed database for large-scale catalog data products; `Prompt Processing`_, the service that receives images and metadata in near real-time from the observatory and produces alerts for the community; and the `LSST Science Platform`_ (LSP), the environment for scientists to retrieve, process, and analyze LSST data products close to where they live.
 
 .. _Qserv: https://ldm-135.lsst.io/
+.. _Prompt Processing: https://ldm-151.lsst.io/LDM-151.pdf#section.3
 .. _LSST Science Platform: https://ldm-542.lsst.io/
 
 This document describes what was accomplished in each area, including measurements obtained, and presents some conclusions about how the engagement went overall.
@@ -25,11 +26,11 @@ Goals
 
 The goals for this proof of concept, in decreasing order of priority, were to:
 
-* Deploy Qserv under `Kubernetes`_ and `Google Kubernetes Engine`_ (GKE).
-* Test performance in the cloud environment versus dedicated hardware.
-* Try different price/performance points for Qserv storage.
-* Compare Qserv with a cloud-native database service.
-* Investigate next-to-database processing with cloud-native database storage.
+#. Deploy Qserv under `Kubernetes`_ and `Google Kubernetes Engine`_ (GKE).
+#. Test performance in the cloud environment versus dedicated hardware.
+#. Try different price/performance points for Qserv storage.
+#. Compare Qserv with a cloud-native database service.
+#. Investigate next-to-database processing with cloud-native database storage.
 
 .. _Kubernetes: https://kubernetes.io
 .. _Google Kubernetes Engine: https://cloud.google.com/kubernetes-engine/
@@ -49,7 +50,7 @@ GKE worked well as a testbed to improve the Kubernetes configuration for all dep
 Qserv shards its data into chunks which are then distributed across multiple nodes.
 Some queries access only a single chunk; others can query across all chunks in parallel.
 The same number of nodes (30) and chunking scheme was initially used on GKE as had been used for tests on the LSST Prototype Data Access Center (PDAC) hardware at NCSA as reported in `DMTR-52 <https://dmtr-52.lsst.io/>`_.
-Later, the Qserv replication service, which had not been previously been deployed under Kubernetes, was also successfully integrated, and that service was used to elastically redistribute chunks when the cluster was expanded from 30 nodes to 40.
+Later, the Qserv replication service, which had not previously been deployed under Kubernetes, was also successfully integrated, and that service was used to elastically redistribute chunks when the cluster was expanded from 30 nodes to 40.
 
 .. _StatefulSet: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
 .. _persistent volumes: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
@@ -108,14 +109,14 @@ Goals
 
 The goals for this proof of concept, in decreasing order of priority, were to:
 
-* Transmit images from LSST facilities to Google Cloud.
-* Deploy the `Prompt Processing Database`_ (PPDB, now known as the Alert Processing Database or APDB) in the cloud.
-* Test PPDB performance in the cloud environment, on larger rented machines than available as dedicated hardware.
-* Attempt to use a different technology for PPDB.
-* Investigate sharding the PPDB across multiple machines.
-* Execute Alert Distribution and Filtering on Google Cloud with simulated alert clients for large-scale throughput tests.
-* Execute Alert Production on Google Cloud to understand the cloud's suitability as a test platform.
-* Investigate workflow/orchestration services for executing Alert Production.
+#. Transmit images from LSST facilities to Google Cloud.
+#. Deploy the `Prompt Processing Database`_ (PPDB, now known as the Alert Processing Database or APDB) in the cloud.
+#. Test PPDB performance in the cloud environment, on larger rented machines than available as dedicated hardware.
+#. Attempt to use a different technology for PPDB.
+#. Investigate sharding the PPDB across multiple machines.
+#. Execute Alert Distribution and Filtering on Google Cloud with simulated alert clients for large-scale throughput tests.
+#. Execute Alert Production on Google Cloud to understand the cloud's suitability as a test platform.
+#. Investigate workflow/orchestration services for executing Alert Production.
 
 .. _Prompt Processing Database: https://dmtn-113.lsst.io/
 
@@ -130,7 +131,7 @@ Data Transfer
 ^^^^^^^^^^^^^
 
 Images were transmitted from a data transfer node in the AURA machine room in La Serena to a US storage bucket within Google Cloud Storage.
-The configuration of the node, networks, and the data are given in `IT-991 <https://ls.st/IT-991>`_ and `DM-18125 <https;//ls.st/DM-18125>`_; the latter contains the measurements obtained.
+The configuration of the node, networks, and the data are given in `IT-991 <https://ls.st/IT-991>`_ and `DM-18125 <https://ls.st/DM-18125>`_; the latter contains the measurements obtained.
 The fastest network link available from La Serena to Santiago (where peering with Google's own network occurred) was a 10 Gbit/sec link.
 As a result, the data to be transferred was scaled down appropriately.
 Nevertheless, the results are not fully representative of the performance of the 100 Gbit/sec link that will be available for LSST Operations as there may be downstream bottlenecks, effects from multiple parallel transfer nodes, problems from large bandwidth-delay products, etc.
@@ -172,10 +173,10 @@ Goals
 
 The goals for this proof of concept, in decreasing order of priority, were to:
 
-* Determine how to deploy Jupyter notebook pods into the cloud from a JupyterHub at NCSA.
-* Determine how authentication and authorization can span environments.
-* Determine how user files and user databases can be shared between the environments.
-* Determine whether LSST data products need to be resident in the cloud or can be retrieved on demand.
+#. Determine how to deploy Jupyter notebook pods into the cloud from a JupyterHub at NCSA.
+#. Determine how authentication and authorization can span environments.
+#. Determine how user files and user databases can be shared between the environments.
+#. Determine whether LSST data products need to be resident in the cloud or can be retrieved on demand.
 
 The LSST Science Platform is already deployed on Kubernetes and instances have been running in the cloud since its inception.
 The primary concern, as a result, is whether the cloud can be combined in a hybrid architecture with on-premises resources in the LSST Data Access Center.
